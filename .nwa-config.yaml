@@ -16,6 +16,7 @@ nwa:
     - "COPYING.LESSER"
     - "LICENSE"
   path:
+    - "doc/**"
     - "src/**/*.pkl"
     - ".mise.toml"
     - ".nwa-config.yaml"
