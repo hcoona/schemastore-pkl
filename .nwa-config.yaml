@@ -1,0 +1,23 @@
+# Copyright 2025 Shuai Zhang
+# SPDX-License-Identifier: LGPL-3.0-or-later WITH LGPL-3.0-linking-exception
+
+nwa:
+  holder: "Shuai Zhang"
+  year: "2025"
+  spdxids: "LGPL-3.0-or-later WITH LGPL-3.0-linking-exception"
+  style:
+    - "pkl:line"
+
+  skip:
+    - "LICENSES/**"
+    - ".editorconfig"
+    - "mise.lock"
+    - "COPYING"
+    - "COPYING.LESSER"
+    - "LICENSE"
+  path:
+    - "src/**/*.pkl"
+    - ".mise.toml"
+    - ".nwa-config.yaml"
+    - "hk.pkl"
+    - "README.md"
