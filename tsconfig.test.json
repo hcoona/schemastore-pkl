@@ -1,0 +1,12 @@
+// Copyright 2025 Shuai Zhang
+// SPDX-License-Identifier: LGPL-3.0-or-later WITH LGPL-3.0-linking-exception
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "extends": "./tsconfig.base.json",
+    "compilerOptions": {
+        "noEmit": true,
+        "types": ["node", "vitest"],
+        "rootDir": "./"
+    },
+    "include": ["src/ts/src/**/*.ts", "src/ts/test/**/*.ts", "vitest.config.ts"]
+}

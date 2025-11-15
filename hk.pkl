@@ -6,15 +6,46 @@ import "package://github.com/jdx/hk/releases/download/v1.20.0/hk@1.20.0#/Builtin
 
 import "./src/hk/steps.pkl"
 
+local generated_files =
+  List(
+    ".mise.lock",
+    "pnpm-lock.yaml",
+  )
+
 local default_linters = new Mapping<String, Step> {
-  ["nwa"] = steps.nwa
+  ["typos"] = (steps.typos) {
+    exclude = generated_files
+  }
+  ["nwa"] = (steps.nwa) {
+    exclude = generated_files
+  }
+}
+
+local configuration_linters = new Mapping<String, Step> {
+  ["json-biome"] = (Builtins.biome) {
+    glob = "*.json"
+    stage = "*.json"
+    prefix = "pnpm exec --"
+  }
 }
 
 local documentation_linters = new Mapping<String, Step> {
-  ["markdownlint-cli2"] = steps.markdownlint_cli2
+  ["markdownlint-cli2"] = (steps.markdownlint_cli2) {
+    prefix = "pnpm exec --"
+  }
   ["markdown-prettier"] = (Builtins.prettier) {
     glob = "*.md"
     stage = "*.md"
+    prefix = "pnpm exec --"
+  }
+}
+
+local javascript_linters = new Mapping<String, Step> {
+  ["js-biome"] = (Builtins.biome) {
+    local js_files = List("*.js", "*.cjs", "*.mjs", "*.ts")
+    glob = js_files
+    stage = js_files
+    prefix = "pnpm exec --"
   }
 }
 
@@ -25,6 +56,7 @@ local pkl_linters = new Mapping<String, Step> {
 
 local all_linters = new Mapping<String, Step> {
   ...default_linters
+  ...configuration_linters
   ...documentation_linters
   ...pkl_linters
 }

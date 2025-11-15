@@ -1,0 +1,61 @@
+{
+    "name": "schemastore-pkl",
+    "version": "0.1.0",
+    "private": true,
+    "description": "TypeScript tooling skeleton for the SchemaStore PKL package.",
+    "type": "module",
+    "license": "LGPL-3.0-or-later",
+    "engines": {
+        "node": ">=22.0.0",
+        "pnpm": ">=10.0.0"
+    },
+    "packageManager": "pnpm@10.22.0",
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "sideEffects": false,
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "require": "./dist/index.cjs"
+        }
+    },
+    "scripts": {
+        "clean": "rimraf dist tsconfig.tsbuildinfo tsconfig.build.tsbuildinfo",
+        "typecheck": "tsc --build tsconfig.build.json --pretty --verbose --stopBuildOnErrors",
+        "build": "pnpm run clean && tsup",
+        "dev": "tsx watch src/ts/src/index.ts",
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix",
+        "test": "vitest run",
+        "test:watch": "vitest watch",
+        "coverage": "vitest run --coverage",
+        "check": "pnpm run lint && pnpm run typecheck && pnpm run test"
+    },
+    "keywords": [
+        "schemastore",
+        "pkl",
+        "typescript",
+        "tooling"
+    ],
+    "devDependencies": {
+        "@biomejs/biome": "^2.3.5",
+        "@eslint/js": "^9.39.1",
+        "@types/node": "^24.10.1",
+        "@vitest/coverage-v8": "^4.0.9",
+        "eslint": "^9.39.1",
+        "globals": "^16.5.0",
+        "markdownlint-cli2": "^0.19.0",
+        "prettier": "^3.6.2",
+        "rimraf": "^6.1.0",
+        "tsup": "^8.5.1",
+        "tsx": "^4.20.6",
+        "typescript": "^5.9.3",
+        "typescript-eslint": "^8.46.4",
+        "vitest": "^4.0.9"
+    }
+}

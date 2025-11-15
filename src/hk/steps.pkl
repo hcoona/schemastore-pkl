@@ -29,3 +29,9 @@ markdownlint_cli2 = new Config.Step {
   check = "markdownlint-cli2 {{files}}"
   fix = "markdownlint-cli2 --fix {{files}}"
 }
+
+typos = new Config.Step {
+  batch = true
+  check = "typos -c .typos.toml {{files}}"
+  fix = "typos -c .typos.toml -w {{files}}"
+}

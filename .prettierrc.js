@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: LGPL-3.0-or-later WITH LGPL-3.0-linking-exception
  */
 
-module.exports = {
+const config = {
     semi: true,
     trailingComma: 'all',
     singleQuote: true,
@@ -28,3 +28,5 @@ module.exports = {
         },
     ],
 };
+
+export default config;
