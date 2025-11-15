@@ -10,6 +10,14 @@ local default_linters = new Mapping<String, Step> {
   ["nwa"] = steps.nwa
 }
 
+local documentation_linters = new Mapping<String, Step> {
+  ["markdownlint-cli2"] = steps.markdownlint_cli2
+  ["markdown-prettier"] = (Builtins.prettier) {
+    glob = "*.md"
+    stage = "*.md"
+  }
+}
+
 local pkl_linters = new Mapping<String, Step> {
   ["pkl"] = Builtins.pkl
   ["pkl-format"] = steps.pklFormat
@@ -17,6 +25,7 @@ local pkl_linters = new Mapping<String, Step> {
 
 local all_linters = new Mapping<String, Step> {
   ...default_linters
+  ...documentation_linters
   ...pkl_linters
 }
 

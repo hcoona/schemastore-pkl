@@ -18,7 +18,9 @@ nwa:
   path:
     - "doc/**"
     - "src/**/*.pkl"
+    - ".markdownlint.yml"
     - ".mise.toml"
     - ".nwa-config.yaml"
+    - ".prettierrc.js"
     - "hk.pkl"
     - "README.md"
