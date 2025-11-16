@@ -12,6 +12,12 @@ local generated_files =
     "pnpm-lock.yaml",
   )
 
+local spec_kit_files =
+  List(
+    ".github/**",
+    ".specify/**",
+  )
+
 local default_linters = new Mapping<String, Step> {
   ["typos"] = (steps.typos) {
     exclude = generated_files
@@ -32,10 +38,12 @@ local configuration_linters = new Mapping<String, Step> {
 local documentation_linters = new Mapping<String, Step> {
   ["markdownlint-cli2"] = (steps.markdownlint_cli2) {
     prefix = "pnpm exec --"
+    exclude = spec_kit_files
   }
   ["markdown-prettier"] = (Builtins.prettier) {
     glob = "*.md"
     stage = "*.md"
+    exclude = spec_kit_files
     prefix = "pnpm exec --"
   }
 }
