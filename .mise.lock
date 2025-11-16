@@ -51,6 +51,15 @@ checksum = "sha256:6730cd0d7a247133e971b8d0b85d6d5de5b9d6a05fc099b2d72540b36725b
 size = 65805843
 url = "https://github.com/pnpm/pnpm/releases/download/v10.22.0/pnpm-linux-x64"
 
+[[tools.powershell]]
+version = "7.5.4"
+backend = "aqua:PowerShell/PowerShell"
+
+[tools.powershell.platforms.linux-x64]
+checksum = "sha256:1fd7983fe56ca9e6233f126925edb24bf6b6b33e356b69996d925c4db94e2fef"
+size = 75396784
+url = "https://github.com/PowerShell/PowerShell/releases/download/v7.5.4/powershell-7.5.4-linux-x64.tar.gz"
+
 [[tools.python]]
 version = "3.12.12"
 backend = "core:python"
