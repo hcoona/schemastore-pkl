@@ -32,10 +32,12 @@ describe('schema descriptor helpers', () => {
     });
 
     it('throws when required fields are missing', () => {
-        expect(() => createSchemaDescriptor({
-            id: 'json/turbo',
-            name: '',
-            path: 'turbo.json',
-        })).toThrow('Descriptor "name" is required.');
+        expect(() =>
+            createSchemaDescriptor({
+                id: 'json/turbo',
+                name: '',
+                path: 'turbo.json',
+            }),
+        ).toThrow('Descriptor "name" is required.');
     });
 });

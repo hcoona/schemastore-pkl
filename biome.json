@@ -44,14 +44,27 @@
                 "recommended": true
             },
             "style": {
-                "recommended": true
+                "recommended": true,
+                "useImportType": "error"
             },
             "suspicious": {
-                "recommended": true
+                "recommended": true,
+                "noConfusingVoidType": "error",
+                "noConsole": {
+                    "level": "warn",
+                    "options": {
+                        "allow": ["warn", "error"]
+                    }
+                }
+            },
+            "nursery": {
+                "recommended": false,
+                "noFloatingPromises": "error"
             }
         }
     },
     "javascript": {
+        "globals": ["node", "vitest"],
         "formatter": {
             "quoteStyle": "single",
             "semicolons": "always",

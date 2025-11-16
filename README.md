@@ -16,7 +16,7 @@ This repository contains [Apple Pkl Language](https://pkl-lang.org/index.html) s
 - **包管理工具**：通过 `mise use pnpm@latest` 获取 pnpm 10，并使用 `pnpm-lock.yaml`（Lockfile v9）锁定依赖图，避免 npm 与 pnpm 混用。
 - **构建链路**：使用 `tsup` 产出 ESM+CJS 以及类型定义，默认 `verbatimModuleSyntax`，适配双模块导出。
 - **测试与覆盖率**：使用 `vitest` + `@vitest/coverage-v8`，并在 `pnpm run coverage` 中开启 V8 覆盖率。
-- **Lint/Format**：采用 ESLint Flat Config + `typescript-eslint`，与仓库现有的 `prettier` 配置一致。
+- **Lint/Format**：使用 Biome 2.x 统一完成 TypeScript/JavaScript/JSON 的 lint+format，默认执行 `biome check .` 并配合 `pnpm run format` 快速写入格式化结果。
 
 ### 快速开始
 
@@ -37,15 +37,14 @@ pnpm run build         # tsup 打包 dist/，生成 ESM/CJS + d.ts
 | `tsconfig.base.json`  | 统一的编译选项，开启 TypeScript 5.6 新增的安全检查                    |
 | `tsconfig.build.json` | 纯构建配置，供 `pnpm run typecheck`/`tsup` 使用                       |
 | `tsconfig.test.json`  | 测试场景编译配置（引入 Vitest 类型）                                  |
-| `tsconfig.lint.json`  | 供 ESLint 类型感知使用的工程文件                                      |
 | `tsup.config.ts`      | 打包配置，产出 `dist/`                                                |
 | `vitest.config.ts`    | 测试与覆盖率配置                                                      |
-| `eslint.config.mjs`   | Flat Config，开启 `typescript-eslint` 的 strict+stylistic 规则        |
+| `biome.json`          | Biome 配置，覆盖格式化、lint 规则与 Node/Vitest 全局变量              |
 
 ### 推荐工作流
 
 1. `pnpm run dev`：利用 `tsx --watch` 和 Node.js 22 稳定的 `--watch` 模式迭代开发。[^node22]
-2. `pnpm run lint`：执行 ESLint（strict + stylistic）配置，配合 `noUncheckedSideEffectImports` 捕获遗漏的副作用导入。[^tspr58941]
+2. `pnpm run lint`：运行 `biome check .`（同时涵盖格式与 lint 诊断），结合 `pnpm run format`/`pnpm run lint:fix` 一次性修复结构化问题。[^tspr58941]
 3. `pnpm run test` / `pnpm run coverage`：运行 Vitest 与覆盖率报告，保障示例/脚本逻辑正确。
 4. `pnpm run build`：通过 `tsup` 生成可复用的 CLI/库构建产物（ESM/CJS + `.d.ts`）。
 
