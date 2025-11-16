@@ -3,7 +3,7 @@
 **Branch**: `[###-feature-name]` | **Date**: [DATE] | **Spec**: [link]
 **Input**: Feature specification from `/specs/[###-feature-name]/spec.md`
 
-**Note**: This template is filled in by the `/speckit.plan` command. See `.specify/templates/commands/plan.md` for the execution workflow.
+**Note**: This template is filled in by the `/speckit.plan` command. See `.github/agents/speckit.plan.agent.md` for the execution workflow expectations and guardrails.
 
 ## Summary
 
@@ -17,21 +17,27 @@
   the iteration process.
 -->
 
-**Language/Version**: [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]  
-**Primary Dependencies**: [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]  
-**Storage**: [if applicable, e.g., PostgreSQL, CoreData, files or N/A]  
-**Testing**: [e.g., pytest, XCTest, cargo test or NEEDS CLARIFICATION]  
+**Language/Version**: [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]
+**Primary Dependencies**: [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]
+**Storage**: [if applicable, e.g., PostgreSQL, CoreData, files or N/A]
+**Testing**: [e.g., pytest, XCTest, cargo test or NEEDS CLARIFICATION]
 **Target Platform**: [e.g., Linux server, iOS 15+, WASM or NEEDS CLARIFICATION]
-**Project Type**: [single/web/mobile - determines source structure]  
-**Performance Goals**: [domain-specific, e.g., 1000 req/s, 10k lines/sec, 60 fps or NEEDS CLARIFICATION]  
-**Constraints**: [domain-specific, e.g., <200ms p95, <100MB memory, offline-capable or NEEDS CLARIFICATION]  
+**Project Type**: [single/web/mobile - determines source structure]
+**Performance Goals**: [domain-specific, e.g., 1000 req/s, 10k lines/sec, 60 fps or NEEDS CLARIFICATION]
+**Constraints**: [domain-specific, e.g., <200ms p95, <100MB memory, offline-capable or NEEDS CLARIFICATION]
 **Scale/Scope**: [domain-specific, e.g., 10k users, 1M LOC, 50 screens or NEEDS CLARIFICATION]
 
 ## Constitution Check
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+1. **Readability-First Delivery** – Highlight how the plan keeps artifacts small and comprehensible (≤300 LOC per task, explicit control flow) before discussing correctness or performance.
+2. **Review-Gated Planning** – Attach the design doc outline, approvals needed, and confirm tests will be authored/reviewed before implementation begins.
+3. **Layered Testing & Fragmented E2E** – Document which algorithms get unit tests and list the E2E fragments plus the 1–2 final full journeys.
+4. **TypeScript & Tooling Discipline** – State the Node.js 22 + TypeScript 5.9 settings in play, required strict compiler flags, and how `hk check`/`pnpm run check` integrate into the workflow.
+5. **Nanopass-Safe Transformations** – If AST/IR work exists, enumerate the exact passes and the validation hooks used before/after each pass.
+6. **Scope & Platform Constraints** – Confirm the plan rejects catalog integrations entirely: the workflow must start from explicit schema URLs/inline payloads and may not assume SchemaStore (or any catalog) metadata exists.
+7. **Development Workflow & Quality Gates** – Describe how MVP-first delivery, tiny manual-review tasks, and stop-the-line checkpoints will be enforced.
 
 ## Project Structure
 
